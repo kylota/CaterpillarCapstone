@@ -115,7 +115,7 @@
         padding:40px;
         padding: 20px 40px 20px 40px;
         text-shadow:1px 1px #000000;
-        background-image: url("../img/caterpillarheaderimg.jpg");
+        background-image: url("../img/headerimg.jpg");
     }
     header.primary h1{
         font-size:2.4rem;
