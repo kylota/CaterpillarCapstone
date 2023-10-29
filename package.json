@@ -1,6 +1,17 @@
 {
   "dependencies": {
     "@mysql/xdevapi": "file:../mysql-connector-nodejs-8.0.35.tar.gz",
-    "cors": "^2.8.5"
-  }
+    "cors": "^2.8.5",
+    "mysql2": "^3.6.2",
+    "sequelize": "^6.33.0"
+  },
+  "name": "caterpillarcapstone",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
