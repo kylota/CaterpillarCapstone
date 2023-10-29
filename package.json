@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@mysql/xdevapi": "file:../mysql-connector-nodejs-8.0.35.tar.gz",
+    "cors": "^2.8.5"
+  }
+}
