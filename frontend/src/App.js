@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './Caterpillar_with_Hearts.svg';
 import './App.css';
 
 class App extends Component {
@@ -24,7 +24,7 @@ class App extends Component {
             <div className="App">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
+                    <h1 className="App-title">the Caterpillars</h1>
                 </header>
                 <p className="App-intro">{this.state.apiResponse}</p>
             </div>
@@ -33,3 +33,13 @@ class App extends Component {
 }
 
 export default App;
+
+/* Set the width of the side navigation to 250px */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "300px";
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+} 
