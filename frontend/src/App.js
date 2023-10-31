@@ -34,6 +34,8 @@ class App extends Component {
 
 export default App;
 
+/*Kys Code starts here. Delete all below this line as desired.*/
+
 /* Set the width of the side navigation to 250px */
 function openNav() {
     document.getElementById("mySidenav").style.width = "300px";
