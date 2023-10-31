@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import logo from './Caterpillar_with_Hearts.svg';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './home';
-import Login from './login';
 import './App.css';
-import { useEffect, useState } from 'react';
+import Login from './components/Login.js'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import SignUp from './components/Signup.js';
 
+function App() {
+    return (
+  
+      <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Login />}></Route>
+        <Route path='/signup' element={<SignUp />}></Route>
+      </Routes>
+      </BrowserRouter>
+  
+    );
+  }
+/*
 class App extends Component {
     constructor(props) {
         super(props);
@@ -35,6 +47,7 @@ class App extends Component {
         );
     }
 }
+*/
 
 export default App;
 
