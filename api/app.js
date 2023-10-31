@@ -6,10 +6,20 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var indexRouter = require('./routes/index');
+var homeRouter = require('./routes/home');
 var usersRouter = require('./routes/users');
 var testAPIRouter = require('./routes/testAPI');
 
+var sequelize = require('./config/database');
+
 var app = express();
+
+// Sync Sequelize with database
+sequelize.sync().then(() => {
+    console.log('Database connected.');
+}).catch((err) => {
+    console.log('Error connecting to the database:', err);
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

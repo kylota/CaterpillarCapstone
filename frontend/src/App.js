@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import logo from './Caterpillar_with_Hearts.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './home';
+import Login from './login';
 import './App.css';
+import { useEffect, useState } from 'react';
 
 class App extends Component {
     constructor(props) {
