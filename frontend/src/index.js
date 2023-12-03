@@ -1,8 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App.js';
-import reportWebVitals from './reportWebVitals.js';
+import './css/index.css';
+import Login from './components/loginComponent.js'
+import SignUp from './components/signupComponent.js';
+import Home from './components/homeComponent.js'
+import Layout from './components/layoutComponent.js'
+import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
+
+
+function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            isAuthenticated ? <Navigate to="/" replace /> : <Login onLogin={handleLogin} />
+          }
+        />
+        <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/"
+          element={
+            isAuthenticated ? (
+              <Layout>
+                  <Home />
+              </Layout>
+            ) : (
+                <Navigate to="/login" replace />
+            )
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,19 +49,4 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
-
-/*Kys Code starts here. Delete all below this line as desired.*/
-
-/* Set the width of the side navigation to 250px */
-function openNav() {
-    document.getElementById("mySidenav").style.width = "300px";
-}
-
-/* Set the width of the side navigation to 0 */
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-} 
+export default App;

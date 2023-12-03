@@ -1,0 +1,23 @@
+{
+  "name": "capstone-project",
+  "version": "1.0.0",
+  "scripts": {
+    "start-backend": "cd api && npm start",
+    "start-frontend": "cd frontend && npm start",
+    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\""
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.23.3",
+    "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.7",
+    "pixi.js": "^7.3.2",
+    "uuid": "^9.0.1"
+  }
+}

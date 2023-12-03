@@ -1,0 +1,413 @@
+/*This is code from loginandregistration.css to merge code.*/
+form {
+    display: flex;
+    flex-direction: column; /* Arrange input elements in a column */
+    align-items: center; /* Center vertically within the viewport */
+}
+
+button, .link {
+    margin: 10px; /* Add margin to all elements to create spacing */
+    text-align: center; /* Center the text within input, label, and button */
+}
+
+input {
+    margin: 10px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center; /* Align items vertically in the middle */
+}
+
+    .input-container label {
+        flex: 1; /* Allow labels to expand to fill the available space */
+        text-align: right; /* Right-align the text of labels */
+        margin-right: 10px; /* Add margin to create spacing between labels and input boxes */
+    }
+
+    .input-container input {
+        flex: 2; /* Allow input boxes to expand to fill the available space */
+    }
+
+/*Kys Code starts here. Delete all below this line as desired.*/
+
+/*  ---------------Box Sizing-----------------  */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+/*  --------------- Utility Classes -----------------  */
+.container {
+    width: 80vw;
+    /*max-width: 960px;*/
+    max-width: 700px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    /*min-height: 80vh;*/
+}
+
+.image-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 40px auto;
+}
+
+.image-container img {
+    margin-top: 5%;
+    display: inline-block;
+}
+
+.img-right {
+    float: right;
+    border: 1px solid #c0c0c0;
+    padding: 2px;
+    margin: 10px 0 10px 20px;
+}
+
+.img-left {
+    float: left;
+    border: 1px solid #c0c0c0;
+    padding: 2px;
+    margin: 10px 20px 10px 0;
+}
+
+.img-center {
+    display: block;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+/*  --------------- Responsive Images -----------------  */
+img {
+    display: block;
+    margin-top: 5%;
+    padding: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 25%;
+}
+/*  --------------- Tables ------------------------  */
+table {
+    width: 100%;
+    border: 1px solid #c0c0c0;
+    border-collapse: collapse;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.4);
+    margin: 20px 0;
+}
+
+    table caption {
+        font-weight: bold;
+        margin: 10px;
+    }
+
+    table tr:nth-child(even) {
+        background-color: rgba(0,0,0,.1);
+    }
+
+    table tr:hover {
+        background-color: rgba(0,0,0,.3);
+    }
+
+    table th {
+        background-color: #172635;
+        color: #fff;
+        padding: 10px;
+    }
+
+    table td {
+        border: 1px solid #c0c0c0;
+        padding: 5px;
+        text-align: right;
+        width: 33%;
+    }
+
+td:nth-child(1) {
+    text-align: left;
+}
+/*  --------------- Global Styles -----------------  */
+body {
+    background-color: rgb(214, 224, 235);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    font-size: 80%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+header.primary {
+    background-color: #035AA6;
+    text-align: center;
+    color: #ffffff;
+    /*padding: 40px;*/
+    /*top right bottom left*/
+    padding: 5px 40px 5px 40px;
+    text-shadow: 1px 1px #000000;
+}
+
+    header.primary h1 {
+        font-size: 2.0rem;
+        margin: 5px 0 5px;
+    }
+
+        header.primary h1 a {
+            color: white;
+            text-decoration: none;
+        }
+
+    header.primary h2 {
+        font-size: 1.2rem;
+    }
+
+    header.primary nav {
+        max-width: 800px;
+        margin: 5px auto;
+        text-align: left;
+        padding: 0px 100px 0px 100px;
+        font-size: 1.0rem;
+    }
+
+        header.primary nav:hover {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        header.primary nav ul {
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+
+            header.primary nav ul li {
+                list-style-type: none;
+            }
+
+                header.primary nav ul li a {
+                    color: #ffffff;
+                    text-decoration: none;
+                    background: #000000;
+                    background-color: black;
+                    padding: 8px 16px;
+                    border-radius: 20px 4px;
+                    border: 1px solid black;
+                    transition: 0.5s;
+                }
+
+                    header.primary nav ul li a:hover,
+                    header.primary nav ul li a:active {
+                        background: rgba(0, 0, 0, 0.8);
+                    }
+
+footer {
+    /*margin-top: auto;*/
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 0px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+#colophon {
+    /*background-color: #3b638b;*/
+    background-color: #333; /*It looks like Jared was changing the color :) */
+}
+
+    #colophon h6 {
+        padding: 10px;
+        margin: 0;
+        text-align: center;
+        color: #ffffff;
+        font-size: 0.9rem;
+    }
+
+/* The side navigation menu */
+
+.sidenav {
+    height: 100%; 
+    width: 0; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+    /* The navigation menu links */
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+
+        /* When you mouse over the navigation links, change their color */
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+    /* Position and style the close button (top right corner) */
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+
+#intro {
+    border-bottom: 1px dotted #c0c0c0;
+    padding-bottom: 14px;
+}
+
+    #intro h2 {
+        color: #3b638b;
+        font-size: 1.4rem;
+        border-bottom: 1px dotted #c0c0c0;
+    }
+
+    #intro h3 {
+        text-align: right;
+    }
+
+#content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 20px;
+    border-bottom: 1px dotted #c0c0c0;
+    padding-bottom: 2.6rem;
+}
+
+    #content article.post {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        padding: 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        transition: 0.5s;
+        background-color: #708090;
+    }
+
+        #content article.post:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+article.post figure {
+    margin: 0;
+}
+
+time.post-date,
+figcaption,
+.post-meta {
+    text-transform: uppercase;
+    color: #c0c0c0;
+}
+
+.post figure img {
+    border: 1px solid #c0c0c0;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+article.post a {
+    color: #3b638b;
+}
+
+    article.post a:hover {
+        text-decoration: none;
+    }
+
+#practice h2 {
+    color: #3b638b;
+    border-bottom: 1px dotted #c0c0c0;
+}
+
+#practice blockquote {
+    border: 4px double #c0c0c0;
+    margin: 40px 80px;
+    padding: 20px 40px;
+    border-radius: 30px 0;
+    background-color: #3b638b;
+    color: #c0c0c0;
+    line-height: 1.8;
+    text-shadow: 1px 1px #000;
+}
+
+    #practice blockquote cite {
+        display: block;
+        font-size: .7rem;
+        font-weight: bold;
+        text-align: right;
+        margin-top: 10px;
+    }
+
+aside[role="complementary"] {
+    background-color: #172635;
+    color: #ffffff;
+    padding: 1.9rem;
+}
+
+aside .container {
+    display: flex;
+    gap: 40px;
+    flex-direction: row;
+}
+
+aside .widget a:last-of-type {
+    display: block;
+    text-align: right;
+    padding-top: 20px;
+    color: white;
+}
+
+aside .widget footer {
+    display: none;
+}
+/*  --------------- Media Queries -----------------  */
+@media screen and (max-width: 600px) {
+    header.primary nav ul {
+        flex-direction: column;
+        max-width: 250px;
+        margin: auto;
+    }
+
+    header.primary nav a {
+        display: block;
+    }
+
+    header.primary nav li {
+        margin-bottom: 10px;
+    }
+}
+
+#content article.post:hover,
+#content article.post:active {
+    transition: 0.5s;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    font-size: medium;
+}
