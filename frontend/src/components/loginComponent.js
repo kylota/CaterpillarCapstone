@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import '../css/index.css';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import { Typography } from "@mui/material";
+import Button from '@mui/material/Button';
+
 
 function Login({onLogin}) {
   const [email, setEmail] = useState("");
@@ -47,40 +53,49 @@ function Login({onLogin}) {
 return (
   <><div>
         <form onSubmit={handleSubmit} action="">
-            <h2>Login</h2>
+          <Box  sx={{ backgroundColor: 'white', margin: '100px auto', width: '50vh', height: '50vh', borderRadius: '30px', boxShadow: 3 }}>
+            <Stack sx={{margin: 'auto'}}>
+            <Typography sx={{textAlign: 'center', margin:'auto', fontSize:'50px', fontFamily:'Arial', fontWeight: 'bolder', color:'#2f74f5', margin: '20px 0' }}>
+              Login
+            </Typography>
             <div className="">
-
-                <div className="input-container">
-                    <label for="emailInput">Email</label>
-                    <input
-                        placeholder='Enter Email'
-                        id="emailInput"
-                        name="email"
-                        maxLength="45"
-                        value={email}
-                        onChange={handleEmailChange} />
-                </div>
-                <div className="input-container">
-                    <label for="passwordInput">Password</label>
-                    <input
-                        placeholder='Enter Password'
-                        id="passwordInput"
-                        name="password"
-                        maxLength="15"
-                        type="password"
-                        value={password}
-                        onChange={handlePasswordChange} />
-                </div>
+              <Stack sx={{margin: '20px auto', width:'60%'}}>
+                <TextField sx={{margin: '10px'}}
+                  className="input-container"
+                  required
+                  label="Email Address"
+                  variant="filled"
+                  id="emailInput"
+                  name="email"
+                  maxLength="45"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+                <TextField sx={{margin:'10px'}}
+                  className="input-container"
+                  required
+                  label="Password"
+                  variant="filled"
+                  id="passwordInput"
+                  name="password"
+                  maxLength="15"
+                  type="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <Button type="submit" variant="outlined" sx={{margin:'15px', color:'#2447b3', fontSize:'15px'}}>
+                  Login
+                </Button>
+                <Link to="/signup" className="link" style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
+                  Create Account
+                </Link>
+              </Stack>
             </div>
-            <button type="submit" className="">
-                Submit
-            </button>
-            <Link to="/signup" className="link">
-                Create Account
-            </Link>
+            </Stack>
+          </Box>
         </form>
     </div>
-        <img src="./Caterpillar.png" className="img-center" alt="team logo" /></>
+  </>
 
 );
 }

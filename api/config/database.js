@@ -5,10 +5,11 @@ const sequelize = new Sequelize('capstone', 'capstone', 'capstone123', {
     dialect: 'mysql' // choose the dialect
 });
 
-/*const sequelize = new Sequelize('sys', 'root', 'root', {
-   host: 'localhost',
-   dialect: 'mysql'
-});*/
+// const sequelize = new Sequelize('Registration', 'root', 'localdbpwd', {
+//     host: '127.0.0.1',
+//     port: 3306,
+//     dialect: 'mysql'
+// });
 
 module.exports = sequelize;
 

@@ -43,7 +43,7 @@ router.post('/signup', async (req, res) => {
     });
 
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: 'Outlook365',
       auth: {
         user: 'capstone-caterpillar@outlook.com',
         pass: '8!gIq2iatnbHMXms'

@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../css/index.css'
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import { Typography } from "@mui/material";
+import Button from '@mui/material/Button';
+
+
 
 function SignUp() {
   const [email, setEmail] = useState('');
@@ -46,45 +53,64 @@ function SignUp() {
     }
   };
 
+
   return (
-      <div>
-          <form onSubmit={handleSubmit}>
-              <h2>Sign Up</h2> 
-              <div className="">
-                  <div className="input-container">
-          <label>Email</label>
-          <input
-            placeholder="Enter Email"
-            value={email}
-            onChange={handleEmailChange}
-          />
-        </div>
-                  <div className="input-container">
-          <label>Password</label>
-          <input
-            placeholder="Enter Password"
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </div>
-                  <div className="input-container">
-          <label>Re-enter Password</label>
-          <input
-            placeholder="Re-enter Password"
-            type="password"
-            value={confirmPassword}
-            onChange={handleConfirmPasswordChange}
-          />
-        </div></div>
-        <button type="submit" className="">
-          Submit
-        </button>
-        <Link to="/login" className="">
-          Login
-        </Link>
-      </form>
-    </div>
+    <div>
+        <form onSubmit={handleSubmit}>
+          <Box  sx={{ backgroundColor: 'white', margin: '100px auto', width: '50vh', height: '50vh', borderRadius: '30px', boxShadow: 3 }}>
+            <Stack sx={{margin: 'auto'}}>
+            <Typography sx={{textAlign: 'center', margin:'auto', fontSize:'50px', fontFamily:'Arial', fontWeight: 'bolder', color:'#2f74f5',margin: '20px 0' }}>
+              Sign Up
+            </Typography>
+            <div className="">
+              <Stack sx={{margin: '20px auto', width:'60%'}}>
+                <TextField sx={{margin: '10px'}}
+                  className="input-container"
+                  required
+                  label="Email Address"
+                  variant="filled"
+                  id="emailInput"
+                  name="email"
+                  maxLength="45"
+                  value={email}
+                  onChange={handleEmailChange}
+                />
+                <TextField sx={{margin:'10px'}}
+                  className="input-container"
+                  required
+                  label="Password"
+                  variant="filled"
+                  id="passwordInput"
+                  name="password"
+                  maxLength="15"
+                  type="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <TextField sx={{margin:'10px'}}
+                  className="input-container"
+                  required
+                  label="Re-enter Password"
+                  variant="filled"
+                  id="passwordInput"
+                  name="password"
+                  maxLength="15"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                />
+                <Button type="submit" variant="outlined" sx={{margin:'15px', color:'#2447b3', fontSize:'15px'}}>
+                  Sign Up
+                </Button>
+                <Link to="/" className="link" style={{ width: "100%", display: 'flex', justifyContent: 'center' }}>
+                  or Login
+                </Link>
+              </Stack>
+            </div>
+            </Stack>
+          </Box>
+        </form>
+      </div>
   );
 }
 
