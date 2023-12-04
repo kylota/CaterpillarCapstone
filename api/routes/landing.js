@@ -96,36 +96,37 @@ router.post('/signup', async (req, res) => {
 
 router.get('/confirm/:uniqueIdentifier', async (req, res) => {
     console.log('Confirm route hit with uniqueIdentifier:', req.params.uniqueIdentifier); // Log when the route is hit
-  
+
     try {
-      console.log('Looking for unregistered user');
-      const unregisteredUser = await UnregisteredUser.findOne({
-        where: { uniqueIdentifier: req.params.uniqueIdentifier }
-      });
-  
-      console.log('Unregistered user found:', unregisteredUser);
-      if (!unregisteredUser) {
-        return res.status(404).json({ success: false, message: 'Invalid or expired confirmation link' });
-      }
-      const verifiedEmail = unregisteredUser.submittedEmail; // Make sure this field exists in your unregistered user model
-      const password = unregisteredUser.pendingUserPassword; // Make sure this field exists in your unregistered user model
-  
-      await RegisteredUser.create({
-        verifiedEmail: verifiedEmail,
-        password: password,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      });
-  
-      await UnregisteredUser.destroy({
-        where: { uniqueIdentifier: req.params.uniqueIdentifier }
-      });
-  
-      return res.status(200).json({ success: true, message: 'Account confirmed and user registered successfully' });
+        console.log('Looking for unregistered user');
+        const unregisteredUser = await UnregisteredUser.findOne({
+            where: { uniqueIdentifier: req.params.uniqueIdentifier }
+        });
+
+        console.log('Unregistered user found:', unregisteredUser);
+        if (!unregisteredUser) {
+            return res.status(404).json({ success: false, message: 'Invalid or expired confirmation link' });
+        }
+        const verifiedEmail = unregisteredUser.submittedEmail; // Make sure this field exists in your unregistered user model
+        const password = unregisteredUser.pendingUserPassword; // Make sure this field exists in your unregistered user model
+
+        await RegisteredUser.create({
+            verifiedEmail: verifiedEmail,
+            password: password,
+            adminuser: false,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        });
+
+        await UnregisteredUser.destroy({
+            where: { uniqueIdentifier: req.params.uniqueIdentifier }
+        });
+
+        return res.status(200).json({ success: true, message: 'Account confirmed and user registered successfully' });
     } catch (err) {
-      console.error('Error during confirmation:', err);
-      return res.status(500).json({ success: false, message: 'Internal server error' });
+        console.error('Error during confirmation:', err);
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
-  });
+});
 
 module.exports = router;
