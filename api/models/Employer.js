@@ -1,33 +1,36 @@
 const { Sequelize, DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Employer = require('./Employer');
+const Employee = require('./Employee');
 
-class Employee extends Model { }
+class Employer extends Model { }
 
-Employee.init({
+Employer.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
-    firstName: {
+    companyName: {
         type: DataTypes.STRING(255)
     },
-    lastName: {
+    headquartersAddress: {
         type: DataTypes.STRING(255)
     },
-    employer: {
+    descendantCompanies: {
         type: DataTypes.STRING(255)
     },
-    ssn: {
+    predecessorCompanies: {
+        type: DataTypes.STRING(255)
+    },
+    hasEmployed: {
         type: DataTypes.BIGINT
     }
 }, {
     sequelize,
-    modelName: 'Employee',
-    tableName: 'employee'
+    modelName: 'Employer',
+    tableName: 'employer'
 });
 
-module.exports = Employee;
+module.exports = Employer;

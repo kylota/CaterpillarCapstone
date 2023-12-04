@@ -7,18 +7,30 @@ const Employee = require('./Employee');
 class EmployedInJob extends Model { }
 
 EmployedInJob.init({
-    theEmployee: {
+    id: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
         references: {
             model: Employee,
             key: 'id'
         }
     },
-    withCompany: {
-        type: DataTypes.INTEGER,
+    theEmployee: {
+        type: DataTypes.VARCHAR(255),
         references: {
-            model: Employer,
-            key: 'id'
+            model: Employee,
+            key: 'id',
+            default: null,
+            //deferrable: DataTypes.Deferrable.INITIALLY_IMMEDIATE // Optional: Specify the deferrable mode
+        }
+    },
+    withCompany: {
+        type: DataTypes.STRING(255),
+        references: {
+            model: Employee,
+            key: 'employer'
         }
     },
     jobTitle: {
@@ -37,13 +49,13 @@ EmployedInJob.init({
 });
 
 EmployedInJob.belongsTo(Employee, {
-    foreignKey: 'theEmployee',
-    as: 'Employee'
+    foreignKey: 'id',
+    as: 'id'
 });
 
-EmployedInJob.belongsTo(Employer, {
-    foreignKey: 'withCompany',
-    as: 'Company'
+EmployedInJob.belongsTo(Employee, {
+    foreignKey: 'employer',
+    as: 'withCompany'
 });
 
 module.exports = EmployedInJob;
