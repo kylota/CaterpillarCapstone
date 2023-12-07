@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
@@ -7,13 +7,11 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import Stack from '@mui/material/Stack';
-
-
-
+/*import * as styles from './styles.js';*/
+/*import AddEmployee from './addemployeeComponent';*/
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -63,6 +61,56 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 }));
 
 function Home() {
+    const handleButtonClick = () => {
+        // Add any logic you need before showing the form
+        console.log('Button clicked');
+        return (<div>
+            {/* Your existing content */}
+
+            {/* Form component */}
+            <addemployeeComponent />
+        </div>);
+    }
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                console.log('Fetching Employer Data')
+                const response = await fetch("http://localhost:4000/home");
+                console.log(response)
+                const result = await response.json();
+                setData(result);
+            } catch (error) {
+                console.error('Error fetching Employer Data:');
+                console.log(error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+    const renderCards = () => {
+        if (!data || data.length === 0) {
+            console.log("Unable to load employer cards.")
+            return <Typography>No data available</Typography>;
+        }
+        return data.map((item) => (
+            <Grid item xs={4} padding={'20px'}>
+                <Card key={item.id}>
+                    <CardActionArea>
+                        <CardContent>
+                            <Typography variant="h5">{item.companyName}</Typography>
+                            <Typography>{item.headquartersAddress}</Typography>
+                            <Typography>{item.hasEmployed}</Typography>
+                        </CardContent>
+                    </CardActionArea>
+                </Card>
+            </Grid>
+        ));
+    };
     return (
         <Box>
 
@@ -75,80 +123,32 @@ function Home() {
                     inputProps={{ 'aria-label': 'search' }}
                 />
             </Search>
-            <Grid container spacing={2} backgroundColor="white" margin={'auto'} boxShadow={20}>
-                <Grid item xs={2} justifyContent={'center'} alignContent={'center'} boxShadow={30}>
-                    <Stack spacing={2} useFlexGap justifyContent={'center'} alignContent={'center'}>
+            <Grid container spacing={2} backgroundColor="white" margin={'20 px'} padding={'10px'} boxShadow={20}>
+                <Grid item xs={2} justifyContent={'center'} alignContent={'center'} boxShadow={30} style={{ display: 'flex' }}>
+                    <Stack spacing={2} useFlexGap justifyContent={'center'} alignContent={'center'} width={'auto'}>
                         <Item>Filter 1</Item>
                         <Item>Filter 2</Item>
                         <Item>Filter 3</Item>
+                        <Item>
+                            <div>
+                                {/*Your existing content */}
+                                <button onClick={handleButtonClick}>Add Employee</button>
+                            </div>
+                        </Item>
                     </Stack>
                 </Grid>
-                <Grid item xs={8}>
-                    <Grid container spacing={2} backgroundColor="#D3D3D3" border={"10px solid white"}>
-                        <Grid item xs={5}>
-                            <Card width="80%">
-                                <CardActionArea>
-                                    <CardMedia
-                                        component="img"
-                                        height="140"
-                                        img="/images/atatHq.jpg"
-                                        alt="AT&T Building 1"
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            AT&T
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Telecommunications company
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Card width="80%">
-                                <CardActionArea>
-                                    <CardMedia
-                                        component="img"
-                                        height="140"
-                                        img="/images/atatHq.jpg"
-                                        alt="AT&T Building 2"
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            AT&T
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Telecommunications company
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                        </Grid>
-                        <Grid item xs={7}>
-                            <Card width="80%">
-                                <CardActionArea>
-                                    <CardMedia
-                                        component="img"
-                                        height="140"
-                                        img="/images/atatHq.jpg"
-                                        alt="AT&T Building 3"
-                                    />
-                                    <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            AT&T
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            Telecommunications company
-                                        </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                        </Grid>
-                    </Grid>
-                </Grid>
+                <Grid item xs={10} padding={'20px'}>
+                    <Grid container spacing={2} backgroundColor="#D3D3D3" padding={'20px'} border={"10px solid white"}>
+
+                        {renderCards()}
+
+                    </Grid></Grid>
             </Grid>
+
+
+
         </Box>
+
     );
 }
 

@@ -10,27 +10,33 @@ Employer.init({
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-        allowNull: false
+        allowNull: false,
     },
     companyName: {
-        type: DataTypes.STRING(255)
+        type: DataTypes.STRING,
+        allowNull: true,
+
     },
     headquartersAddress: {
-        type: DataTypes.STRING(255)
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     descendantCompanies: {
-        type: DataTypes.STRING(255)
+        type: DataTypes.STRING,
+        allowNull: true
     },
     predecessorCompanies: {
-        type: DataTypes.STRING(255)
+        type: DataTypes.STRING,
+        allowNull: true,
     },
     hasEmployed: {
-        type: DataTypes.BIGINT
+        type: DataTypes.INTEGER
     }
 }, {
     sequelize,
     modelName: 'Employer',
-    tableName: 'employer'
+    tableName: 'employer',
+    timestamps: false,
 });
 
 module.exports = Employer;

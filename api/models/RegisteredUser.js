@@ -17,9 +17,9 @@ RegisteredUser.init({
 }, {
     sequelize,
     modelName: 'RegisteredUser',
-    tableName: 'registereduser',
+    tableName: 'registeredUser',
     timestamps: true,
-    adminuser: false, //added field in table
+   /* adminuser: false, //added field in table*/
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 });

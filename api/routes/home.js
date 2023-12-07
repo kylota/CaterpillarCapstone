@@ -1,9 +1,17 @@
 var express = require('express');
-var router = express.Router();
+const router = express.Router();
+const Employer = require('../models/Employer.js');
 
 /* GET home page. */
-router.get('/home', function (req, res, next) {
-    res.render('home', { title: 'Express' });
+router.get("/", async (req, res) => {
+
+    try {
+        const Employers = await Employer.findAll();
+        res.json(Employers);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ success: false, message: 'Internal server error' });
+    }
 });
 
 module.exports = router;
