@@ -20,8 +20,7 @@ header.primary {
     background-color: #035AA6;
     text-align: center;
     color: #ffffff;
-    padding: 40px;
-    padding: 20px 40px 20px 40px;
+    padding: 10px 40px 10px 40px;
     text-shadow: 1px 1px #000000;
 }
 
@@ -196,7 +195,7 @@ footer {
 }
 
     #colophon h6 {
-        padding: 20px;
+        padding: 10px;
         margin: 0;
         text-align: center;
         color: #ffffff;

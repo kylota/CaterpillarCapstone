@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
       <h1><Link to="/">CELDV</Link></h1>
       </header>
       <main>{children}</main>
-     {/* <footer>Footer content here</footer>*/}
+      {/*<footer>Footer content here</footer>*/}
     </div>
   );
 };
