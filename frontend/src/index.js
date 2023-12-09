@@ -5,78 +5,105 @@ import Login from './components/loginComponent.js';
 import SignUp from './components/signupComponent.js';
 import Home from './components/homeComponent.js';
 import Layout from './components/layoutComponent.js';
-import Landing from './components/landingComponent.js'; // Import the landing page component
+import Landing from './components/landingComponent.js'; 
+import TreeDiagram from './components/digraphComponent.js'; 
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem('isAuthenticated') === 'true'
+  );
 
-    const handleLogin = () => {
-        setIsAuthenticated(true);
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsAuthenticated(localStorage.getItem('isAuthenticated') === 'true');
     };
 
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route
-                    path="/login"
-                    element={
-                        isAuthenticated ? <Navigate to="/home" replace /> : <Login onLogin={handleLogin} />
-                    }
-                />
-                <Route path="/signup" element={<SignUp />} />
-                <Route
-                    path="/"
-                    element={
-                        <Navigate to="/landing" replace />
-                    }
-                />
-                <Route
-                    path="/home"
-                    element={
-                        isAuthenticated ? (
-                            <Layout>
-                                <Home />
-                            </Layout>
-                        ) : (
-                            <Navigate to="/login" replace />
-                        )
-                    }
-                />
-                <Route
-                    path="/landing"
-                    element={
-                        <Layout>
-                            <Landing />
-                        </Layout>
-                    }
-                />
-                <Route
-                    path="/login"
-                    element={
-                        <Layout>
-                            <Login />
-                        </Layout>
-                    }
-                />
-                <Route
-                    path="/signup"
-                    element={
-                        <Layout>
-                            <SignUp />
-                        </Layout>
-                    }
-                />
-            </Routes>
-        </BrowserRouter>
-    );
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+  const handleLogin = () => {
+    localStorage.setItem('isAuthenticated', 'true');
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated');
+    setIsAuthenticated(false);
+  };
+
+  return (
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              isAuthenticated ? <Navigate to="/home" replace /> : <Login onLogin={handleLogin} />
+            }
+          />
+          <Route path="/signup"  
+            element={
+              <SignUp />
+            } 
+          />
+          <Route path="/"
+            element={
+              isAuthenticated ? (
+                <Home onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/landing" replace />
+              )
+            }
+          />
+          <Route path="/home"
+            element={
+              isAuthenticated ? (
+                <Home onLogout={handleLogout} />
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+          <Route path="/landing"
+            element={
+                <Landing />
+            }
+          />
+          <Route path="/login"
+            element={
+                <Login />
+            }
+          />
+          <Route path="/signup"
+            element={
+                <SignUp />
+            }
+          />
+          <Route path="/tree/:employeeID"
+            element={
+              isAuthenticated ? (
+                <TreeDiagram />
+              ) : (
+                <Navigate to="/login" replace /> // Redirect to the login page if not authenticated
+              )
+            } 
+          />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
 
 export default App;
