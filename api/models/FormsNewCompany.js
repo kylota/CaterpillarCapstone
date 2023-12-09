@@ -7,17 +7,19 @@ class FormsNewCompany extends Model { }
 
 FormsNewCompany.init({
     parentEmployer: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        default: null,
         references: {
             model: Employer,
-            key: 'id'
+            key: 'employerID'
         }
     },
     childEmployer: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        default: null,
         references: {
             model: Employer,
-            key: 'id'
+            key: 'employerID'
         }
     },
     onDate: {

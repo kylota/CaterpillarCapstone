@@ -6,10 +6,11 @@ const Employer = require('./Employer');
 class Employee extends Model { }
 
 Employee.init({
-    id: {
-        type: DataTypes.INTEGER,
+    employeeID: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-        autoIncrement: true,
+        unique: true,
         allowNull: false
     },
     firstName: {
@@ -18,11 +19,9 @@ Employee.init({
     lastName: {
         type: DataTypes.STRING(255)
     },
-    employer: {
-        type: DataTypes.STRING(255)
-    },
     ssn: {
-        type: DataTypes.BIGINT
+        type: DataTypes.BIGINT,
+        DEFAULT: null
     }
 }, {
     sequelize,
