@@ -10,7 +10,6 @@ import TreeDiagram from './components/digraphComponent.js';
 import AddEmployer from './components/addemployerComponent.js';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-
 function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(
         localStorage.getItem('isAuthenticated') === 'true'
@@ -58,7 +57,7 @@ function App() {
                             isAuthenticated ? (
                                 <Home onLogout={handleLogout} />
                             ) : (
-                                <Navigate to="/landing" replace />
+                                <Navigate to="/home" replace />
                             )
                         }
                     />

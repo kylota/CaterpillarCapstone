@@ -46,7 +46,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.use('/home', homeRouter);
-app.use('/index', indexRouter);
 app.use('/landing', landingRouter);
 app.use('/users', usersRouter);
 app.use('/testAPI', testAPIRouter);
