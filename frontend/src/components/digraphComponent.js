@@ -11,7 +11,7 @@ const EmployeeTree = () => {
     // Fetch the employee data from your endpoint using the employeeID
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:9000/getdata/${employeeID}`);
+        const response = await fetch(`http://localhost:9000/getData/${employeeID}`);
         const data = await response.json();
         console.log(data); // Log what we're getting from the endpoint
 

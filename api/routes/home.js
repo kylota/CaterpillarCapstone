@@ -1,3 +1,4 @@
+
 var express = require('express');
 const router = express.Router();
 const Employer = require('../models/Employer.js');
@@ -28,7 +29,7 @@ router.post("/search", async (req, res) => {
         res.json(results);
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ success: false, message: 'Internal server error' });
+        return res.status(500).json({ success: false, message: 'Insafdternal server error' });
     }
 });
 

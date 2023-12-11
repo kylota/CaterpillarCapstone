@@ -19,6 +19,13 @@ Employee.init({
     lastName: {
         type: DataTypes.STRING(255)
     },
+    employer: {
+        type: DataTypes.STRING(255)
+    },
+    employerID: {
+        type: DataTypes.UUID,
+        DEFAULT: null
+    },
     ssn: {
         type: DataTypes.BIGINT,
         DEFAULT: null
