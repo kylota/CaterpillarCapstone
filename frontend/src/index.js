@@ -56,7 +56,7 @@ function App() {
                             isAuthenticated ? (
                                 <Home onLogout={handleLogout} />
                             ) : (
-                                <Navigate to="/home" replace />
+                                <Navigate to="/landing" replace />
                             )
                         }
                     />
