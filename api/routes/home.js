@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.post("/search", async (req, res) =>{
+router.post("/search", async (req, res) => {
     const { query } = req.body;
     try {
         const results = await Employer.findAll({

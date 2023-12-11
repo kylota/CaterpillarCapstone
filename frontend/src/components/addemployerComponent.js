@@ -1,65 +1,92 @@
-/*
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Formik, Field, Form } from 'formik';
+import '../css/index.css'
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-const Employer = require('../models/Employer.js');
+import { Box } from '@mui/material';
+import Stack from '@mui/material/Stack';
 
 const validationSchema = Yup.object({
     companyName: Yup.string().required('Comapny name is required'),
     headquartersAddress: Yup.string().required('Company address is required'),
+    descendentCompanies: Yup.string(),
+    predecessorCompanies: Yup.string(),
 });
 
-const AddEmployer = () => {
-    const employer = await Employer.create({
-        companyName: companyName,
-        headquartersAddress: headquartersAddress,
-        descendentCompanies: descendentCompanies,
-        predecessorCompanies: predecessorCompanies,
-    });
+function AddEmployer() {
 
     const initialValues = {
-        companyName: companyName,
-        headquartersAddress: headquartersAddress,
-        descendentCompanies: descendentCompanies,
-        predecessorCompanies: predecessorCompanies        
+        companyName: '',
+        headquartersAddress: '',
+        descendentCompanies: '',
+        predecessorCompanies: ''
     };
 
-    // Handle form submission
-    const onSubmit = (values) => {
-        // Handle form submission logic
-        console.log(values);
+    //KYS WORK IN PROGRESS TO GET THE FORM TO SUBMIT
+
+    const handleSubmit = async (values) => {
+        //     await new Promise((r) => setTimeout(r, 500));
+        //     alert(JSON.stringify(values, null, 2));
+        // }}
+        try {
+            // Perform your API call to send the form data to the server here
+            console.log('Form values submitted:', values);
+            // You can use fetch or any other library to send a POST request to your server
+            // Example:
+            // const response = await fetch('your_api_endpoint_here', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify(values),
+            // });
+            // Handle the response as needed
+
+            // Optionally, you can reset the form values here
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
     };
+
 
     return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}
-        >
-            <Form>
-                <div>
-                    <label htmlFor="companyName">Company Name:</label>
-                    <Field type="text" id="companyName" name="companyName" />
+        <Box>
+            <Stack sx={{ margin: 'auto' }}>
+                <div><center>
+                    <h1>Add Employer</h1></center>
+                    <Formik
+                        initialValues={initialValues}
+                        validationSchema={validationSchema}
+                        onSubmit={handleSubmit}
+                    >
+                        <Form>
+                            <div>
+                                <label htmlFor="companyName">Company Name:</label>
+                                <Field type="text" id="companyName" name="companyName" />
+                                <ErrorMessage name="companyNameError" component="div" />
+                            </div>
+                            <div>
+                                <label htmlFor="headquartersAddress">headquartersAddress:</label>
+                                <Field type="text" id="headquartersAddress" name="headquartersAddress" />
+                                <ErrorMessage name="headquartersAddressError" component="div" />
+                            </div>
+                            <div>
+                                <label htmlFor="descendantCompanies">descendantCompanies:</label>
+                                <Field type="text" id="descendantCompanies" name="descendantCompanies" />
+                                <ErrorMessage name="descendantCompanies" component="div" />
+                            </div>
+                            <div>
+                                <label htmlFor="predecessorCompanies">predecessorCompanies:</label>
+                                <Field type="text" id="predecessorCompanies" name="predecessorCompanies" />
+                                <ErrorMessage name="predecessorCompanies" component="div" />
+                            </div>
+                            {/*Submit button*/}
+                            <button type="submit">Submit</button>
+                        </Form>
+                    </Formik>
                 </div>
-                <div>
-                        <label htmlFor="headquartersAddress">headquartersAddress:</label>
-                        <Field type="text" id="headquartersAddress" name="headquartersAddress" />
-                </div>
-                <div>
-                        <label htmlFor="descendantCompanies">descendantCompanies:</label>
-                        <Field type="text" id="descendantCompanies" name="descendantCompanies" />
-                    </div>
-                    <div>
-                        <label htmlFor="predecessorCompanies">predecessorCompanies:</label>
-                        <Field type="text" id="predecessorCompanies" name="predecessorCompanies" />
-                    </div>
-                {/*Submit button}
-                <button type="submit">Submit</button>
-            </Form>
-        </Formik>
-    );
+            </Stack>
+        </Box>
+    )
 };
 
-ReactDOM.render(<AddEmployer />, document.getElementById('root'));
-*/
+export default AddEmployer;

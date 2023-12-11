@@ -12,6 +12,12 @@ function Landing() {
         <Link to="/login" style={styles.linkStyle}>Log in</Link>
         <Link to="/signup" style={styles.linkStyle}>Register</Link>
       </div>
+      <img
+        src="../logo192.png" // Replace with the actual path to your image
+        alt="Company Logo" // Provide a descriptive alt text for accessibility
+        style={styles.imageStyle}
+      />
+
     </div>
   );
 }

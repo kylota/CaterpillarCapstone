@@ -20,61 +20,67 @@ header.primary {
     background-color: #035AA6;
     text-align: center;
     color: #ffffff;
-    padding: 10px 40px 10px 40px;
+    padding: 5px 0px 20px 0px;
     text-shadow: 1px 1px #000000;
+    border-bottom: 1px solid #c0c0c0;
+    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.4);
+    /* position: relative; */
+    top: 0;
+    z-index: 1;
 }
 
-    header.primary h1 {
-        font-size: 2.4rem;
-        margin: 20px 0 10px;
-    }
+header.primary h1 {
+    font-size: 2.4rem;
+    text-align: center;
+}
 
-        header.primary h1 a {
-            color: white;
-            text-decoration: none;
-        }
+header.primary h1 a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
 
-    header.primary h2 {
-        font-size: 1.4rem;
-    }
+/*header.primary h2 {
+    font-size: 1.4rem;
+}
 
-    header.primary nav {
-        text-align: left;
-        padding: 20px 40px 20px 40px;
-        font-size: 1.4rem;
-    }
+header.primary nav {
+    text-align: left;
+    padding: 20px 40px 20px 40px;
+    font-size: 1.4rem;
+}
 
-        header.primary nav:hover {
-            text-decoration: none;
-            cursor: pointer;
-        }
+header.primary nav:hover {
+    text-decoration: none;
+    cursor: pointer;
+}
 
-        header.primary nav ul {
-            padding: 0;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-        }
+header.primary nav ul {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 
-            header.primary nav ul li {
-                list-style-type: none;
-            }
+header.primary nav ul li {
+    list-style-type: none;
+}
 
-                header.primary nav ul li a {
-                    color: #ffffff;
-                    text-decoration: none;
-                    background: #000000;
-                    background-color: black;
-                    padding: 8px 16px;
-                    border-radius: 20px 4px;
-                    border: 1px solid black;
-                    transition: 0.5s;
-                }
+header.primary nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    background: #000000;
+    background-color: black;
+    padding: 8px 16px;
+    border-radius: 20px 4px;
+    border: 1px solid black;
+    transition: 0.5s;
+}
 
-                    header.primary nav ul li a:hover,
-                    header.primary nav ul li a:active {
-                        background: rgba(0, 0, 0, 0.8);
-                    }
+header.primary nav ul li a:hover,
+header.primary nav ul li a:active {
+    background: rgba(0, 0, 0, 0.8);
+} */
 
 .container {
     margin: 40px auto;
@@ -114,21 +120,26 @@ img {
     text-align: center;
 }
 
-    .image-container img {
-        margin-top: 10%;
-        display: inline-block;
-    }
+.image-container img {
+    margin-top: 10%;
+    display: inline-block;
+}
 
 /*Forms and Input*/
 form {
     display: flex;
-    flex-direction: column; /* Arrange input elements in a column */
-    align-items: center; /* Center vertically within the viewport */
+    flex-direction: column;
+    /* Arrange input elements in a column */
+    align-items: center;
+    /* Center vertically within the viewport */
 }
 
-button, .link {
-    margin: 10px; /* Add margin to all elements to create spacing */
-    text-align: center; /* Center the text within input, label, and button */
+button,
+.link {
+    margin: 10px;
+    /* Add margin to all elements to create spacing */
+    text-align: center;
+    /* Center the text within input, label, and button */
 }
 
 input {
@@ -137,18 +148,23 @@ input {
 
 .input-container {
     display: flex;
-    align-items: center; /* Align items vertically in the middle */
+    align-items: center;
+    /* Align items vertically in the middle */
 }
 
-    .input-container label {
-        flex: 1; /* Allow labels to expand to fill the available space */
-        text-align: right; /* Right-align the text of labels */
-        margin-right: 10px; /* Add margin to create spacing between labels and input boxes */
-    }
+.input-container label {
+    flex: 1;
+    /* Allow labels to expand to fill the available space */
+    text-align: right;
+    /* Right-align the text of labels */
+    margin-right: 10px;
+    /* Add margin to create spacing between labels and input boxes */
+}
 
-    .input-container input {
-        flex: 2; /* Allow input boxes to expand to fill the available space */
-    }
+.input-container input {
+    flex: 2;
+    /* Allow input boxes to expand to fill the available space */
+}
 
 /*  ---------------Box Sizing-----------------  */
 html {
@@ -160,6 +176,7 @@ html {
 *:after {
     box-sizing: inherit;
 }
+
 /*  --------------- Tables ------------------------  */
 table {
     width: 100%;
@@ -169,10 +186,10 @@ table {
     margin: 20px 0;
 }
 
-    table caption {
-        font-weight: bold;
-        margin: 10px;
-    }
+table caption {
+    font-weight: bold;
+    margin: 10px;
+}
 
 footer {
     position: sticky;
@@ -183,21 +200,22 @@ footer {
     padding: 10px;
 }
 
-    footer#colophon {
-        background-color: rgb(3333ff);
-        text-align: center;
-        padding: 10px;
-        margin-top: auto; /* This will push the footer to the bottom */
-    }
+footer#colophon {
+    background-color: rgb(3333ff);
+    text-align: center;
+    padding: 10px;
+    margin-top: auto;
+    /* This will push the footer to the bottom */
+}
 
 #colophon {
     background-color: #3b638b;
 }
 
-    #colophon h6 {
-        padding: 10px;
-        margin: 0;
-        text-align: center;
-        color: #ffffff;
-        font-size: 0.9rem;
-    }
+#colophon h6 {
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    color: #ffffff;
+    font-size: 0.9rem;
+}

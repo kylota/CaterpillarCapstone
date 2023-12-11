@@ -8,7 +8,7 @@ class Employer extends Model { }
 Employer.init({
     employerID: {
         type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        // defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
         unique: true,
         allowNull: false
