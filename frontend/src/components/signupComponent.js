@@ -42,7 +42,7 @@ function SignUp() {
       if (data.success) {
         // If the registration is successful, you can redirect to the login page
         // or perform any other action as needed
-        alert('Registration successful!');
+        alert('Registration successful! Please check your email for a confirmation link to complete your registration'); 
         navigate('/login');
       } else {
         alert(data.message);

@@ -14,16 +14,18 @@ RegisteredUser.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
+    isAdmin: { 
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+    },
 }, {
     sequelize,
     modelName: 'RegisteredUser',
     tableName: 'registeredUser',
     timestamps: true,
-   /* adminuser: false, //added field in table*/
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 });
-
-
 
 module.exports = RegisteredUser;

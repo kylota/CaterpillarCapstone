@@ -1,53 +1,121 @@
-var express = require('express');
+const express = require('express');
 const router = express.Router();
+const { Op } = require('sequelize');
 
+
+const RegisteredUser = require('../models/RegisteredUser')
 const Employee = require('../models/Employee');
 const Employer = require('../models/Employer');
-const employedInJobModel = require('../models/employedInJob');
+const employedInJobModel = require('../models/EmployedInJob');
+const MergeSplit = require('../models/MergeSplit');
 
-// Create an endpoint to get all data by employeeID
-router.get('/:employeeID', async (req, res) => {
+const { Sequelize } = require('sequelize');
+
+
+router.get('/users', async (req, res) => {
   try {
-    const { employeeID } = req.params;
-
-    // Find the employee by employeeID and retrieve firstName and lastName
-    const employee = await Employee.findOne({
-      where: { employeeID },
-      attributes: ['firstName', 'lastName'],
+    const users = await RegisteredUser.findAll({
+      attributes: ['verifiedEmail', 'isAdmin'], // Include the 'isAdmin' attribute
     });
 
-    if (!employee) {
-      return res.status(404).json({ success: false, message: 'Employee not found' });
+    // Check if users data exists
+    if (!users || users.length === 0) {
+      return res.status(404).json({ success: false, message: 'No users found' });
     }
 
-    const employedInJob = await employedInJobModel.findOne({
-      where: { employeeID },
-      attributes: ['jobTitle', 'withCompany'],
+    // Respond with the users' data, including admin status
+    res.status(200).json({ success: true, data: users });
+  } catch (err) {
+    console.error('Error fetching users:', err);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+
+
+router.get('/companies', async (req, res) => {
+  try {
+    const employers = await Employer.findAll({
+      attributes: ['companyName', 'hasMerged', 'parentCompany'], // Include 'parentCompany' attribute
     });
 
-    if (!employedInJob) {
-      return res.status(404).json({ success: false, message: 'Job not found' });
+    // Check if employers data exists
+    if (!employers || employers.length === 0) {
+      return res.status(404).json({ success: false, message: 'No companies found' });
     }
 
-    // Since 'employer' can potentially be reassigned or declared conditionally, use 'let'
-    let employer;
+    // Respond with the employers data
+    res.status(200).json({ success: true, data: employers });
 
-    // Find the employer by companyName and retrieve companyName
-    employer = await Employer.findOne({
-      where: { companyName: employedInJob.withCompany.trim() },
-      attributes: ['companyName'],
+  } catch (err) {
+    console.error('Error fetching companies:', err);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+
+router.get('/companies/split', async (req, res) => {
+  try {
+    // Fetch all companies from the 'mergeSplit' table
+    const splitCompanies = await MergeSplit.findAll({
+      attributes: ['partCompany1', 'partCompany2', 'wholeCompany'],
     });
 
-    if (!employer) {
+    // Check if splitCompanies data exists
+    if (!splitCompanies || splitCompanies.length === 0) {
+      return res.status(404).json({ success: false, message: 'No companies found' });
+    }
+
+    // Extract company names from the splitCompanies data
+    const companyNames = splitCompanies.map(company => ({
+      partCompany1: company.partCompany1,
+      partCompany2: company.partCompany2,
+      wholeCompany: company.wholeCompany
+    }));
+
+    // Respond with the company names
+    res.status(200).json({ success: true, data: companyNames });
+  } catch (err) {
+    console.error('Error fetching split companies:', err);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
+
+
+router.get('/:employerID', async (req, res) => {
+  try {
+    const { employerID } = req.params;
+    console.log("Received employerID:", employerID);
+
+    // Find the employer by employerID and retrieve companyName
+    const employerData = await Employer.findOne({
+      where: { employerID: employerID },
+      attributes: ['companyName', 'parentCompany', 'hasMerged'],
+    });
+
+    console.log("Employer data:", employerData);
+
+    if (!employerData) {
       return res.status(404).json({ success: false, message: 'Employer not found' });
     }
 
+    // Use companyName to find child companies
+    const childrenCompanies = await Employer.findAll({
+      where: { parentCompany: employerData.companyName },
+      attributes: ['companyName'], // Add any other relevant attributes you need
+    });
+
+    // Convert the result to a list of company names
+    const childrenCompanyNames = childrenCompanies.map(company => company.companyName);
+
     res.status(200).json({
       success: true,
-      firstName: employee.firstName,
-      lastName: employee.lastName,
-      jobTitle: employedInJob.jobTitle,
-      companyName: employer.companyName,
+      data: {
+        companyName: employerData.companyName,
+        parentCompany: employerData.parentCompany,
+        hasMerged: employerData.hasMerged,
+        childrenCompanies: childrenCompanyNames
+      }
     });
 
   } catch (err) {
@@ -55,5 +123,7 @@ router.get('/:employeeID', async (req, res) => {
     res.status(500).json({ success: false, message: 'Internal server error' });
   }
 });
+
+
 
 module.exports = router;
